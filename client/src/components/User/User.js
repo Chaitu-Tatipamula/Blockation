@@ -12,7 +12,7 @@ function User() {
             throw new Error('Failed to upload files');
           }
           // Handle success response if needed
-          console.log('Upload files success');
+          window.location.href("https://blockation.vercel.app/file/uploadFile")
         })
         .catch(error => {
           // Handle error response if needed
@@ -20,13 +20,13 @@ function User() {
         });
       }
       const handleGetFiles = ()=>{
-        fetch('/file/getAllFiles')
+        fetch('file/getAllFiles')
         .then(response => {
           if (!response.ok) {
             throw new Error('Failed to get files');
           }
           // Handle success response if needed
-          console.log('Get files success');
+          window.location.href("https://blockation.vercel.app/file/getAllFiles")
         })
         .catch(error => {
           // Handle error response if needed
