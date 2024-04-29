@@ -5,7 +5,34 @@ import Loader from "../Loader/Loader"
 function User() {
      const dispatch=useDispatch();
      const {user,loading,isAuthenticated}=useSelector(state=>state.user);
-  
+      const handleUploadFiles = ()=>{
+        fetch('/file/uploadFile')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to upload files');
+          }
+          // Handle success response if needed
+          console.log('Upload files success');
+        })
+        .catch(error => {
+          // Handle error response if needed
+          console.error('Upload files error:', error);
+        });
+      }
+      const handleGetFiles = ()=>{
+        fetch('/file/getAllFiles')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to get files');
+          }
+          // Handle success response if needed
+          console.log('Get files success');
+        })
+        .catch(error => {
+          // Handle error response if needed
+          console.error('Get files error:', error);
+        });
+      }
     
   return (
  <>
@@ -52,18 +79,18 @@ function User() {
                 <p class="my-2 text-md"></p>
                 <div class="flex justify-center ">
                   <div class="py-4 pr-5">
-                    <a href="file/uploadFile">
-                      <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-xl">
+                    {/* <a href="file/uploadFile"> */}
+                      <button onClick={handleUploadFiles} class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-xl">
                        Upload Files
                       </button>
-                    </a>
+                    {/* </a> */}
                   </div>
                   <div class="py-4">
-                    <a href="/file/getAllFiles">
-                      <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-xl">
+                    {/* <a href="/file/getAllFiles"> */}
+                      <button onClick={handleGetFiles} class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-xl">
                         Get Your Uploaded Files
                       </button>
-                    </a>
+                    {/* </a> */}
                   </div>
                 </div>
                 <p class="text-sm">
