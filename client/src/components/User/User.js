@@ -2,10 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Hero from "../layout/Hero";
 import Loader from "../Loader/Loader"
+
 function User() {
      const dispatch=useDispatch();
      const {user,loading,isAuthenticated}=useSelector(state=>state.user);
-      const handleUploadFiles = ()=>{
+      const handleUploadFiles = (e)=>{
+        e.preventDefault()
         fetch('/file/uploadFile')
         .then(response => {
           if (!response.ok) {
@@ -19,13 +21,15 @@ function User() {
           console.error('Upload files error:', error);
         });
       }
-      const handleGetFiles = ()=>{
+      const handleGetFiles = (e)=>{
+        e.preventDefault()
         fetch('file/getAllFiles')
         .then(response => {
           if (!response.ok) {
             throw new Error('Failed to get files');
           }
           // Handle success response if needed
+          
           window.location.href = "https://blockation.vercel.app/file/getAllFiles"
         })
         .catch(error => {
