@@ -12,7 +12,7 @@ function User() {
             throw new Error('Failed to upload files');
           }
           // Handle success response if needed
-          window.location.href("https://blockation.vercel.app/file/uploadFile")
+          window.location.href= "https://blockation.vercel.app/file/uploadFile"
         })
         .catch(error => {
           // Handle error response if needed
@@ -26,7 +26,7 @@ function User() {
             throw new Error('Failed to get files');
           }
           // Handle success response if needed
-          window.location.href("https://blockation.vercel.app/file/getAllFiles")
+          window.location.href = "https://blockation.vercel.app/file/getAllFiles"
         })
         .catch(error => {
           // Handle error response if needed
