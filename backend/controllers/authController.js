@@ -1,5 +1,5 @@
 const passport = require("passport");
-const CLIENT_URL = "https://blockation.vercel.app/";
+const CLIENT_URL = "https://blockation-1.onrender.com/";
 const User=require('../models/localUser')
 const bcrypt=require('bcryptjs')
 const ErroHandler=require('../utils/errorhander')

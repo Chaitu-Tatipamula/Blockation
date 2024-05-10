@@ -28,7 +28,7 @@ connectDataBase();
 
 app.use(
   cors({
-    origin: "https://blockation.vercel.app",
+    origin: "https://blockation-1.onrender.com",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })

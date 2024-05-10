@@ -10,7 +10,7 @@ const cors = require('cors')
 
 
 router.use(cors({
-  origin: "https://blockation.vercel.app",
+  origin: "https://blockation-1.onrender.com",
   credentials: true
 }));
 
@@ -21,7 +21,7 @@ router.get('/sendfile',auth,(req,res)=>{
   })
 
   router.get('/getAllFiles', (req, res) => {
-    res.json({ redirectUrl: "https://blockation.vercel.app/file/getAllFiles" });
+    res.json({ redirectUrl: "https://blockation-1.onrender.com/file/getAllFiles" });
   });
 
 
