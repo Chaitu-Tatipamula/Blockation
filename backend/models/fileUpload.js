@@ -18,6 +18,10 @@ const fileUploadSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  Cert : {
+    type : Boolean,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -19,7 +19,7 @@ const SignIn = () => {
   }
 
   const opengoogleLogin=()=>{
-    window.open('https://blockation-s3uo.onrender.com/auth/google')
+    window.open('http://localhost:7000/auth/google')
   }
   useEffect(() => {
   if(isAuthenticated){

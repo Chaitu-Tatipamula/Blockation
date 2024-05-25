@@ -106,6 +106,9 @@ function GetFiles() {
                   <th scope="col" className="py-3 px-6">
                     <span className="">Action</span>
                   </th>
+                  <th scope="col" className="py-3 px-6">
+                    <span className="">Want NFT?</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -127,6 +130,12 @@ function GetFiles() {
                           {" "}
                           Your File
                         </a>
+                      </td>
+                      <td class="py-4 px-6">{file.Cert ? 
+                          <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                            MINT..!
+                          </button> : 
+                          <p>You gotta upload as a Certificate</p>}
                       </td>
                     </tr>
                   ))}

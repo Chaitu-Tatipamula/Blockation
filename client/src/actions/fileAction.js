@@ -9,7 +9,7 @@ export const getUploadedFiles=(currentPage=1,keyword="")=>async (dispatch)=>{
         dispatch({type:GET_FILES_REQUEST})
         
    console.log(currentPage)
-        const {data}=await axios.get(`https://blockation-s3uo.onrender.com/auth/me/uploadedfiles?page=${currentPage}&keyword=${keyword}`);
+        const {data}=await axios.get(`http://localhost:7000/auth/me/uploadedfiles?page=${currentPage}&keyword=${keyword}`);
 
 console.log(data)
         if(data.success===true){
@@ -25,7 +25,7 @@ console.log(data)
 
 //Upload Files 
 
-export const uploadFiles=({file,cid})=>async (dispatch)=>{
+export const uploadFiles=({file,cid,isCert})=>async (dispatch)=>{
     try{
         dispatch({type:UPLOAD_FILE_REQUEST})
         // const formData = new FormData()
@@ -35,6 +35,7 @@ export const uploadFiles=({file,cid})=>async (dispatch)=>{
         const formData = new FormData();
         formData.append("file", file);
         formData.append("cid", cid);
+        formData.append("isCert",isCert)
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
@@ -43,14 +44,15 @@ export const uploadFiles=({file,cid})=>async (dispatch)=>{
                 "Content-Type": "multipart/form-data" 
             }};
         const {data}=await axios.post(
-            `https://blockation-s3uo.onrender.com/file/sendfile`,
+            `http://localhost:7000/file/sendfile`,
             formData,
             cid,
+            isCert,
             config
         )
         console.log(data)
         dispatch({type:UPLOAD_FILE_SUCCESS,payload:data})
-        fetch('https://blockation-s3uo.onrender.com/file/getAllFiles')
+        fetch('http://localhost:7000/file/getAllFiles')
         .then(response => response.json())
         .then(data => {
             window.location.href = data.redirectUrl;

@@ -44,8 +44,11 @@ router.get('/sendfile',auth,(req,res)=>{
 
         const cid = fields.cid;
         const formData = fields.formData;
+        const isCert = fields.isCert;
+        if(!isCert){
+          isCert = false
+        }
 
-        console.log('File:', files.file);
         add=add+1;
         console.log(req.user._id+"This is your user id")
         let userId =0
@@ -60,12 +63,11 @@ router.get('/sendfile',auth,(req,res)=>{
             user: req.user.displayName ? req.user.id : req.user._id,
             originalfileName: files.file.originalFilename,
             newfileName: files.file.newFilename,
-            cid: cid
+            Cert : isCert,
+            cid: cid,
         });
         count=count+1
-        console.log(uploadedFile);
         const existingFile = await fileUpload.findOne({ user : userId, cid: cid });
-        console.log(existingFile);
         if(!existingFile){
         await uploadedFile.save();
         }

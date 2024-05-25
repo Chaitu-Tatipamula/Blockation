@@ -8,15 +8,12 @@ import { create } from '@web3-storage/w3up-client'
 function UploadFiles() {
   const [upload, setUpload] = useState("");
   const [fileName,setFilename]  = useState("")
+  const [yes,setYes] = useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formSubmit = async(e) => {
         e.preventDefault();
-        // const form=new FormData();
         console.log(upload);
-        // console.log(fileName);
-        // console.log(upload.name);
-        // console.log(upload.webkitRelativePath);
         const client = await create()
         const account = await client.login(`chaitutatipamula023@gmail.com`)
         const space = await client.createSpace('Blocation')
@@ -33,7 +30,7 @@ function UploadFiles() {
         console.log(uploadingFile);
         const filecid = await client.uploadDirectory([uploadingFile]); 
         console.log(filecid.toString());
-        dispatch(uploadFiles({"file":upload,"cid":filecid.toString()}));
+        dispatch(uploadFiles({"file":upload,"cid":filecid.toString(),"isCert":yes}));
 
         
   };
@@ -71,11 +68,19 @@ function UploadFiles() {
                 <div class="flex justify-center ">
                   <div class="py-4 pr-5">
                     <form
-                      action="https://blockation-s3uo.onrender.com/file/sendfile"
+                      action="http://localhost:7000/file/sendfile"
                       method="post"
                       onSubmit={formSubmit}
                       encType="multipart/form-data"
                     >
+                      <label>Is this a Certificate</label>
+                      <input
+                        type="checkbox"
+                        className="form-control"
+                        name="upload"
+                        multiple
+                        onChange={()=>{setYes(!yes)}}
+                      /><br/>
                       <input
                         type="file"
                         className="form-control"

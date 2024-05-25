@@ -9,7 +9,7 @@ export const login=(email,password)=>async (dispatch)=>{
         
     const config = { headers: { "Content-Type": "application/json" } };
         const {data}=await axios.post(
-            `https://blockation-s3uo.onrender.com/auth/login`,
+            `http://localhost:7000/auth/login`,
             {email,password},
             config
         )
@@ -25,7 +25,7 @@ export const login=(email,password)=>async (dispatch)=>{
 export const logout=()=>async (dispatch)=>{
     try{
 
-     await axios.get(`https://blockation-s3uo.onrender.com/auth/logout`);
+     await axios.get(`http://localhost:7000/auth/logout`);
 
 
         
@@ -43,7 +43,7 @@ export const register=(userData)=>async (dispatch)=>{
     const config = { headers: { "Content-Type": "application/json" } };
     
         const {data}=await axios.post(
-            "https://blockation-s3uo.onrender.com/auth/register",
+            "http://localhost:7000/auth/register",
             userData,
             config,
         )
@@ -63,7 +63,7 @@ export const laodUser=()=>async (dispatch)=>{
         dispatch({type:LOAD_USER_REQUEST})
         
    
-        const {data}=await axios.get(`https://blockation-s3uo.onrender.com/auth/me`);
+        const {data}=await axios.get(`http://localhost:7000/auth/me`);
 
 console.log(data)
         
