@@ -1,5 +1,5 @@
 const passport = require("passport");
-const CLIENT_URL = "https://blockation-1.onrender.com/";
+const CLIENT_URL = "http://localhost:3000/";
 const User=require('../models/localUser')
 const bcrypt=require('bcryptjs')
 const ErroHandler=require('../utils/errorhander')

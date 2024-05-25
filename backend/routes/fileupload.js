@@ -10,9 +10,10 @@ const cors = require('cors')
 
 
 router.use(cors({
-  origin: "https://blockation-1.onrender.com",
+  origin: "http://localhost:3000",
   credentials: true
 }));
+
 
 
 router.get('/sendfile',auth,(req,res)=>{
@@ -21,7 +22,7 @@ router.get('/sendfile',auth,(req,res)=>{
   })
 
   router.get('/getAllFiles', (req, res) => {
-    res.json({ redirectUrl: "https://blockation-1.onrender.com/file/getAllFiles" });
+    res.json({ redirectUrl: "http://localhost:3000/file/getAllFiles" });
   });
 
 
