@@ -6,10 +6,10 @@ import {
 import "@rainbow-me/rainbowkit/styles.css";
 import React from "react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { sepolia } from "wagmi/chains";
+import { avalancheFuji, sepolia } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
-const { chains, publicClient } = configureChains([sepolia], [publicProvider()]);
+const { chains, publicClient } = configureChains([avalancheFuji], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: "Blockation",

@@ -28,7 +28,7 @@ store.dispatch(laodUser())
 <Header/>
 <Router basename="/">
   <Routes>
-
+    
   <Route path="/" element={<Home/>}/>
  { isAuthenticated && <Route path="/file/getAllFiles" element={<GetFiles/>}/>}
   { isAuthenticated &&<Route path="/account" element={<User/>}/>}
