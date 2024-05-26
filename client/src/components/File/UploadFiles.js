@@ -68,7 +68,7 @@ function UploadFiles() {
                 <div class="flex justify-center ">
                   <div class="py-4 pr-5">
                     <form
-                      action="http://localhost:7000/file/sendfile"
+                      action="https://blockation-s3uo.onrender.com/file/sendfile"
                       method="post"
                       onSubmit={formSubmit}
                       encType="multipart/form-data"
