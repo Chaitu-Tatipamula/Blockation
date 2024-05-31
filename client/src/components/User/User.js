@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Hero from "../layout/Hero";
 import Loader from "../Loader/Loader"
 function User() {
      const dispatch=useDispatch();
      const {user,loading,isAuthenticated}=useSelector(state=>state.user);
-     const handleUploadFiles = (e) => {
+     useEffect(() => {
+        const token = sessionStorage.getItem("user-session");
+        if (!token) {
+          window.location.href = "/login";
+        }
+        
+    },[isAuthenticated]);
+
+    const handleUploadFiles = (e) => {
       e.preventDefault(); 
       window.location.href = "/file/uploadFile";
     };

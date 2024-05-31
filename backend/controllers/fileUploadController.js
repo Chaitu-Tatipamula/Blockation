@@ -2,8 +2,8 @@ const formidable = require('formidable');
 const fileUpload = require('../models/fileUpload');
 
 exports.sendFile = async (req, res) => {
+    console.log(req.user);
     const form = new formidable.IncomingForm();
-
     form.parse(req, async (err, fields, files) => {
         if (err) {
             console.error('Error parsing form:', err);
@@ -13,7 +13,7 @@ exports.sendFile = async (req, res) => {
         const { cid, formData, isCert } = fields;
         const userId = req.user.displayName ? req.user.id : req.user._id;
         const isCertificate = isCert || false;
-
+        
         const uploadedFile = new fileUpload({
             user: userId,
             originalfileName: files.file.originalFilename,
@@ -30,7 +30,7 @@ exports.sendFile = async (req, res) => {
             res.redirect("/file/getAllFiles");
         } catch (error) {
             console.error('Error saving file:', error);
-            res.status(500).send('Internal Server Error');
+            res.status(500).json({ success: false, message: 'Error saving file' });
         }
     });
 };

@@ -88,10 +88,13 @@ exports.postLogin=(req, res, next)=> {
         }
         
         req.logIn(user, (err) => {
-          if(!err)    res.json({
+          if(!err){   
+            // req.session.user = user;
+
+            res.json({
             success:true,
             user:req.user
-          });
+          });}
       
        
     
@@ -103,24 +106,18 @@ exports.postLogin=(req, res, next)=> {
 
 //logout user
 exports.logoutUser=async(req,res,next)=>{
-    req.logout(function(err) {
-        if (err) { return next(err); }
-       
-      });
-      if(req.user){
-        res.status(200).json(req.user);
-      }
-      else{
+    
         res.status(200).json({
             message:"Logged out successfully"
         })
       
-      }
+      
 }
 
 //Login Success
 exports.loginSuccess=async(req,res,next)=>{
     if (req.user) {
+
         res.status(200).json({
           success: true,
           message: "successfull",

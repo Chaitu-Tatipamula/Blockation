@@ -14,7 +14,9 @@ export const login=(email,password)=>async (dispatch)=>{
             config
         )
         console.log(data);
+        window.sessionStorage.setItem("user-session",JSON.stringify(data.user))
         dispatch({type:LOGIN_SUCCESS,payload:data.user})
+
     }catch(error){
         dispatch({type:LOGIN_FAIL,payload:error.response.data.message})
     }
@@ -26,7 +28,7 @@ export const logout=()=>async (dispatch)=>{
     try{
 
      await axios.get(`http://localhost:7000/auth/logout`);
-
+     window.sessionStorage.clear()
 
         
         dispatch({type:LOGOUT_SUCCESS})
@@ -61,11 +63,18 @@ export const register=(userData)=>async (dispatch)=>{
 export const laodUser=()=>async (dispatch)=>{
     try{
         dispatch({type:LOAD_USER_REQUEST})
-        
-   
-        const {data}=await axios.get(`http://localhost:7000/auth/me`);
+        const sessionToken = window.sessionStorage.getItem("user-session");
 
-console.log(data)
+        const config = {
+            headers: {
+                "Content-Type": "multipart/form-data" ,
+                Authorization: `Bearer ${sessionToken}` // Assuming Bearer token authentication
+            }
+        };
+   
+        const {data}=await axios.get(`http://localhost:7000/auth/me`,config);
+
+        console.log(data)
         
         dispatch({type:LOAD_USER_SUCCESS,payload:data.userDetails})
     }catch(error){

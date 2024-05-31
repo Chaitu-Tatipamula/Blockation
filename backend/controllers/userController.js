@@ -6,6 +6,8 @@ const Apifeatures=require('../utils/apifeatures')
 //complete that function on later on
 
 exports.getUserDetails=async(req,res,next)=>{
+   
+    console.log(req.user);
         if(req.user.displayName){
             const googleUserDetails=await googleUser.find({googleID:req.user.id})
 

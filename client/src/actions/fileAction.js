@@ -39,10 +39,14 @@ export const uploadFiles=({file,cid,isCert})=>async (dispatch)=>{
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
-        const config = { 
+        const sessionToken = window.sessionStorage.getItem("user-session");
+        console.log(sessionToken);
+        const config = {
             headers: {
-                "Content-Type": "multipart/form-data" 
-            }};
+                "Content-Type": "multipart/form-data" ,
+                Authorization: `Bearer ${sessionToken}` // Assuming Bearer token authentication
+            }
+        };
         const {data}=await axios.post(
             `http://localhost:7000/file/sendfile`,
             formData,
