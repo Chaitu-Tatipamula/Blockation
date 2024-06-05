@@ -15,6 +15,8 @@ import { useSelector } from "react-redux";
 import AboutUs from "./components/Main/AboutUs";
 import ContactUs from "./components/Main/ContactUs";
 axios.defaults.withCredentials=true
+axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem('user-session')}`;
+
 function App() {
 
 const {isAuthenticated}=useSelector(state=>state.user);

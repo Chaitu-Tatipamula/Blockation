@@ -36,5 +36,5 @@ exports.sendFile = async (req, res) => {
 };
 
 exports.getAllFiles = (req, res) => {
-    res.json({ redirectUrl: "http://localhost:3000/file/getAllFiles"});
+    res.json({ redirectUrl: "https://blockation-1.onrender.com/file/getAllFiles"});
 };

@@ -9,7 +9,7 @@ export const getUploadedFiles=(currentPage=1,keyword="")=>async (dispatch)=>{
         dispatch({type:GET_FILES_REQUEST})
         
    console.log(currentPage)
-        const {data}=await axios.get(`http://localhost:7000/auth/me/uploadedfiles?page=${currentPage}&keyword=${keyword}`);
+        const {data}=await axios.get(`https://blockation-s3uo.onrender.com/auth/me/uploadedfiles?page=${currentPage}&keyword=${keyword}`);
 
 console.log(data)
         if(data.success===true){
@@ -39,16 +39,20 @@ export const uploadFiles=({file,cid,isCert})=>async (dispatch)=>{
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
-        const sessionToken = window.sessionStorage.getItem("user-session");
-        console.log(sessionToken);
+        // const sessionToken = window.sessionStorage.getItem("user-session");
+        // console.log(sessionToken);
+        // const headers = new Headers()
+        // headers.append('Authorization', `Bearer ${sessionToken}`);
+        // headers.append("Content-Type", "multipart/form-data");
         const config = {
             headers: {
                 "Content-Type": "multipart/form-data" ,
-                Authorization: `Bearer ${sessionToken}` // Assuming Bearer token authentication
+                // Authorization: `Bearer ${sessionToken}` // Assuming Bearer token authentication
             }
         };
+        
         const {data}=await axios.post(
-            `http://localhost:7000/file/sendfile`,
+            `https://blockation-s3uo.onrender.com/file/sendfile`,
             formData,
             cid,
             isCert,
@@ -56,7 +60,7 @@ export const uploadFiles=({file,cid,isCert})=>async (dispatch)=>{
         )
         console.log(data)
         dispatch({type:UPLOAD_FILE_SUCCESS,payload:data})
-        fetch('http://localhost:7000/file/getAllFiles')
+        fetch('https://blockation-s3uo.onrender.com/file/getAllFiles')
         .then(response => response.json())
         .then(data => {
             window.location.href = data.redirectUrl;
