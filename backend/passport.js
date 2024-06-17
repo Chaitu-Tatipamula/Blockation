@@ -1,7 +1,6 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const LocalStrategy=require('passport-local').Strategy;
 const passport = require("passport");
-const {GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET}=require('../backend/config/constant_var')
 
 const User=require('../backend/models/localUser')
 const bcrypt=require('bcryptjs')
@@ -12,8 +11,8 @@ const googleUser=require('../backend/models/googleUser')
 passport.use(
   new GoogleStrategy(
     {
-      clientID: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
    async function (accessToken, refreshToken, profile, done) {
