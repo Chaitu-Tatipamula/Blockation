@@ -9,7 +9,7 @@ export const getUploadedFiles=(currentPage=1,keyword="")=>async (dispatch)=>{
         dispatch({type:GET_FILES_REQUEST})
         
    console.log(currentPage)
-        const {data}=await axios.get(`https://blockation-s3uo.onrender.com/auth/me/uploadedfiles?page=${currentPage}&keyword=${keyword}`);
+        const {data}=await axios.get(`https://blockation-cfhb.onrender.com/auth/me/uploadedfiles?page=${currentPage}&keyword=${keyword}`);
 
 console.log(data)
         if(data.success===true){
@@ -52,7 +52,7 @@ export const uploadFiles=({file,cid,isCert})=>async (dispatch)=>{
         };
         
         const {data}=await axios.post(
-            `https://blockation-s3uo.onrender.com/file/sendfile`,
+            `https://blockation-cfhb.onrender.com/file/sendfile`,
             formData,
             cid,
             isCert,
@@ -60,7 +60,7 @@ export const uploadFiles=({file,cid,isCert})=>async (dispatch)=>{
         )
         console.log(data)
         dispatch({type:UPLOAD_FILE_SUCCESS,payload:data})
-        fetch('https://blockation-s3uo.onrender.com/file/getAllFiles')
+        fetch('https://blockation-cfhb.onrender.com/file/getAllFiles')
         .then(response => response.json())
         .then(data => {
             window.location.href = data.redirectUrl;

@@ -9,7 +9,7 @@ export const login=(email,password)=>async (dispatch)=>{
         
     const config = { headers: { "Content-Type": "application/json" } };
         const {data}=await axios.post(
-            `https://blockation-s3uo.onrender.com/auth/login`,
+            `https://blockation-cfhb.onrender.com/auth/login`,
             {email,password},
             config
         )
@@ -27,7 +27,7 @@ export const login=(email,password)=>async (dispatch)=>{
 export const logout=()=>async (dispatch)=>{
     try{
 
-     await axios.get(`https://blockation-s3uo.onrender.com/auth/logout`);
+     await axios.get(`https://blockation-cfhb.onrender.com/auth/logout`);
      window.sessionStorage.clear()
 
         
@@ -45,7 +45,7 @@ export const register=(userData)=>async (dispatch)=>{
     const config = { headers: { "Content-Type": "application/json" } };
     
         const {data}=await axios.post(
-            "https://blockation-s3uo.onrender.com/auth/register",
+            "https://blockation-cfhb.onrender.com/auth/register",
             userData,
             config,
         )
@@ -73,7 +73,7 @@ export const laodUser=()=>async (dispatch)=>{
             }
         };
    
-        const {data}=await axios.get(`https://blockation-s3uo.onrender.com/auth/me`,config);
+        const {data}=await axios.get(`https://blockation-cfhb.onrender.com/auth/me`,config);
 
         console.log(data)
         
