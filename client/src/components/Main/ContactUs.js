@@ -1,9 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Hero from '../layout/Hero'
+import emailjs from '@emailjs/browser'
 
 const ContactUs = () => {
-  return (
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    emailjs.send(
+      'service_p9sv0sp', // Replace with your EmailJS service ID
+      'template_75okfsi', // Replace with your EmailJS template ID
+      {
+        to_email: 'chaitutatipamula023@gmail.com',
+        from_name: formData.fullName,
+        from_email: formData.email,
+        phone: formData.phone,
+        message: formData.message
+      },
+      '5Y43AJzhy-ufTW_Cs' // Replace with your EmailJS public key
+    )
+    .then((result) => {
+      alert('Message sent successfully!')
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        message: ''
+      })
+    })
+    .catch((error) => {
+      alert('Failed to send message. Please try again.')
+    })
+  }
+
+  return (
     <>
     <Hero text="Contact Us"/>
     <section id="contact" class="ud-contact relative py-20 md:py-[120px]">
@@ -81,49 +124,53 @@ const ContactUs = () => {
               <h3 class="mb-8 text-2xl font-semibold md:text-[26px]">
                 Send us a Message
               </h3>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div class="mb-6">
-                  <label for="fullName" class="block text-xs text-dark"
-                    >Full Name*</label
-                  >
+                  <label for="fullName" class="block text-xs text-dark">Full Name*</label>
                   <input
                     type="text"
                     name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
                     placeholder="Adam Gelius"
                     class="w-full border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none"
+                    required
                   />
                 </div>
                 <div class="mb-6">
-                  <label for="email" class="block text-xs text-dark"
-                    >Email*</label
-                  >
+                  <label for="email" class="block text-xs text-dark">Email*</label>
                   <input
                     type="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="example@yourmail.com"
                     class="w-full border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none"
+                    required
                   />
                 </div>
                 <div class="mb-6">
-                  <label for="phone" class="block text-xs text-dark"
-                    >Phone*</label
-                  >
+                  <label for="phone" class="block text-xs text-dark">Phone*</label>
                   <input
                     type="text"
                     name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
                     placeholder="+885 1254 5211 552"
                     class="w-full border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none"
+                    required
                   />
                 </div>
                 <div class="mb-6">
-                  <label for="message" class="block text-xs text-dark"
-                    >Message*</label
-                  >
+                  <label for="message" class="block text-xs text-dark">Message*</label>
                   <textarea
                     name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     rows="1"
                     placeholder="type your message here"
                     class="w-full resize-none border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none"
+                    required
                   ></textarea>
                 </div>
                 <div class="mb-0">
